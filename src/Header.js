@@ -9,23 +9,17 @@ function Header(props) {
             borderRadius : "1px",
             height:"30px",
         }}>
-            <div style={{
-                display:"flex",
-                marginLeft : "20px",
-            }}>
-           <div style={{
-            width : "50%",
-           }}>My Todo List</div>
-           <div style={{
-              width : "50%",
-            textAlign: "right",
-            marginRight : "20px",
-           }}>React</div>
-           </div>
+                <div style={{ display:"flex",marginLeft : "20px",}}>
+                    <div style={{width : "50%",}}>
+                        My Todo List
+                    </div>
+                    <div style={{width : "50%",textAlign: "right",marginRight : "20px",}}>
+                        React
+                    </div>
+                </div>
             </header>
-{props.children}
-</>
-  )
-}
+        {props.children}
+    </>
+    )}
 
 export default Header

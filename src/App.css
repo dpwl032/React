@@ -1,37 +1,42 @@
 .content-wrap{
+  max-width: 1200px;
+  min-width: 800px;
   display: flex;
   align-items: center; 
   justify-content: center;
-  
 }
+
 .cotents{
-  max-width: 1200px;
-  min-width: 800px;
   align-items: center; 
   justify-content: center;
 }
 
 .input-wrap{
- background-color: rgba(96, 91, 91, 0.074);
+  max-width: 1200px;
+  min-width: 800px;
+  background-color: rgba(96, 91, 91, 0.074);
   border-radius: 10px;
   min-width: 800px;
   max-width: 1200px;
   height: 70px;
 }
+
 .input-wrap{
   display: flex;
 }
+
 .input-contents >input{
   border-radius: 10px;
   height: 30px;
   border: none;
 }
+
 .input-contents{
   width: 50%;
   margin-left: 20px;
   margin-top: 20px;
- 
 }
+
 .inputs-button{
   width: 50%;
   text-align: right;
@@ -43,7 +48,6 @@
 display: flex;
 }
 
-
 .toDoList-Css{
   border : 3px solid hsla(190, 64%, 39%, 0.821);
   width : 250px;
@@ -52,6 +56,7 @@ display: flex;
   margin : 20px;
   text-Align : center;
 }
+
 .addButton{
   border-radius: 10px;
   height: 35px;
@@ -60,8 +65,8 @@ display: flex;
   background-color: hsla(190, 64%, 39%, 0.821);
   margin: 5px;
   color: white;
-  
 }
+
 .cancelButton{
   border-radius: 10px;
   height: 35px;
@@ -70,6 +75,7 @@ display: flex;
   border: 3px solid rgb(238, 19, 19);
   margin: 5px;
 }
+
 .restButton{
   border-radius: 10px;
   height: 35px;

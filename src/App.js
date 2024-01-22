@@ -9,7 +9,7 @@ function App() {
   //배열 state화
   const [toDoLists, setTodoLists] = useState(
     [{id:1, title:'리액트 공부하기1', text:'리액트 기초를 공부해봅시다', isDone:false},
-    {id:2, title:'리액트 공부하기2.', text:'리액트 기초를 공부해봅시다', isDone:false},
+    {id:2, title:'리액트 공부하기2', text:'리액트 기초를 공부해봅시다', isDone:false},
     {id:3, title:'리액트 공부하기3', text:'리액트 기초를 공부해봅시다', isDone:false},]
   );
 
@@ -32,6 +32,7 @@ const addTextHandler =(event) =>{
       id: toDoLists.length+1,
       title,
       text,
+      idDone : false,
 
     }
     setTodoLists([...toDoLists,newTodoList]);
@@ -40,7 +41,7 @@ const addTextHandler =(event) =>{
   }
 
   
-
+////////////////////////////////////////////////////
   //삭제하기(working)
   const removeToDoList = (id) =>{
     const newTodoList = toDoLists.filter((items)=>items.id !==id);
@@ -51,8 +52,8 @@ const addTextHandler =(event) =>{
 
 
 const [doneLists, setDoneLists] = useState(
-  [{id:1, title:'리액트 공부합시다.', text:'리액트 노션보기!!',isDone:true},
-  {id:2, title:'리액트 공부합시다.', text:'리액트 노션보기!!',isDone:true},
+  [{id:1, title:'리액트 공부합시다.4', text:'리액트 노션보기!!',isDone:true},
+  {id:2, title:'리액트 공부합시다.5', text:'리액트 노션보기!!',isDone:true},
   ]
 );
 
@@ -63,17 +64,38 @@ const removeDoneList = (id) =>{
   setDoneLists(newDoneList);
 }
 
+////////////////////////////////////////////////////////
+const [working, setWorking] = useState(toDoLists);
+const [done, setDone] = useState(doneLists);
+
 
   //완료
   const addDoneList = (id) =>{
+    // const completeList = toDoLists.filter((items)=>items.id !==id);
+    // setTodoLists(completeList);
 
+    const changeDone = toDoLists.filter((items)=>items.id ===id);
+
+
+
+    setDoneLists([...doneLists,...changeDone ]);
+
+    console.log(doneLists);
+
+    const changeWorking = toDoLists.filter((items)=>items.id !==id);
+    setTodoLists(changeWorking);
+   
   }
 
   //취소
-  const addWorkingList = (e) =>{
+  const addWorkingList = (id) =>{
    // submit 이벤트가 일어나면 새로고침방지. submit 관련 태그 고유의 동작 금지
-   e.preventDefault();
- console.log(e.target.form);
+   const cancelDone = doneLists.filter((items)=>items.id ===id);
+   setTodoLists([...toDoLists, ...cancelDone ]);
+
+   const aaa = doneLists.filter((items)=>items.id !==id);
+    setDoneLists(aaa);
+
   }
 
   return (
@@ -117,18 +139,16 @@ return <div key={toDoLists.id} className='toDoList-Css'>
         
       {doneLists.map(function (items){
 
-return <form onSubmit={addWorkingList}>
-<div key={doneLists.id} className='toDoList-Css'> 
+return <div key={doneLists.id} className='toDoList-Css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
       <button className="cancelButton" onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
 
-         <button className="restButton" type='submit'>취소</button>
+         <button className="restButton" onClick={()=>addWorkingList(items.id)}>취소</button>
     
        
     {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
       </div>
-</form>
 
 
 
@@ -145,5 +165,8 @@ return <form onSubmit={addWorkingList}>
 
   );
 }
+
+
+
 
 export default App;
