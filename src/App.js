@@ -5,10 +5,11 @@ import { useState } from 'react';
 
 function App() {
 
+  //Working
   //배열 state화
   const [toDoLists, setTodoLists] = useState(
     [{id:1, title:'리액트 공부하기', text:'리액트 기초를 공부해봅시다', isDone:false},
-    {id:2, title:'리액트 공부합시다.', text:'리액트 노션보기!!!', isDone:false},
+    {id:2, title:'리액트 공부하기.', text:'리액트 기초를 공부해봅시다', isDone:false},
     {id:3, title:'리액트 공부하기', text:'리액트 기초를 공부해봅시다', isDone:false},]
   );
 
@@ -40,11 +41,28 @@ const addTextHandler =(event) =>{
 
   
 
-  //삭제하기
+  //삭제하기(working)
   const removeToDoList = (id) =>{
     const newTodoList = toDoLists.filter((items)=>items.id !==id);
     setTodoLists(newTodoList);
   }
+
+
+
+
+const [doneLists, setDoneLists] = useState(
+  [{id:1, title:'리액트 공부합시다.', text:'리액트 노션보기!!'},
+  {id:2, title:'리액트 공부합시다.', text:'리액트 노션보기!!'},
+  ]
+);
+
+
+//삭제하기(done)
+const removeDoneList = (id) =>{
+  const newDoneList = doneLists.filter((items)=>items.id !==id);
+  setDoneLists(newDoneList);
+}
+
 
   //완료
   const isDoneToDoList = () =>{
@@ -85,8 +103,19 @@ return <div key={toDoLists.id} className='toDoList-Css'>
 })}</div>
 
 
-      <div>Done</div>
+      <div>Done
+      {doneLists.map(function (items){
 
+return <div key={doneLists.id} className='toDoList-Css'> 
+      <h2>{items.title}</h2>
+      <p>{items.text}</p>
+      <button onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
+      <button onClick={isWorkingToDoList}>취소</button>
+      </div>
+      })}
+
+
+</div>
     </Header>
   );
 }
