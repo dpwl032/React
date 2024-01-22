@@ -51,8 +51,8 @@ const addTextHandler =(event) =>{
 
 
 const [doneLists, setDoneLists] = useState(
-  [{id:1, title:'리액트 공부합시다.', text:'리액트 노션보기!!'},
-  {id:2, title:'리액트 공부합시다.', text:'리액트 노션보기!!'},
+  [{id:1, title:'리액트 공부합시다.', text:'리액트 노션보기!!',isDone:true},
+  {id:2, title:'리액트 공부합시다.', text:'리액트 노션보기!!',isDone:true},
   ]
 );
 
@@ -67,71 +67,82 @@ const removeDoneList = (id) =>{
   //완료
   const addDoneList = (id) =>{
 
-    const title = document.getElementsByTagName("h2")[id].textContent;
-    const text = document.getElementsByTagName("p")[id].textContent;
-    const changeList = {
-      id:doneLists.length+1,
-      title : title,
-      text : text,
-    }
-    console.log("test",title);
-    setDoneLists([...doneLists,changeList]);
   }
 
   //취소
-  const addWorkingList = (event) =>{
+  const addWorkingList = (e) =>{
    // submit 이벤트가 일어나면 새로고침방지. submit 관련 태그 고유의 동작 금지
-    event.preventDefault();
-   console.log(event.target.title);
+   e.preventDefault();
+ console.log(e.target.form);
   }
 
   return (
-    <Header>
-    
-      제목 : <input
+   
+    <div className='content-wrap'> 
+      <div className='contents'><Header>
+
+     <div className='input-wrap'> 
+     <div className='input-contents'>
+제목  &nbsp;<input
         value={title}
         onChange= {addTitleHandler}
       />
-      내용 : <input 
+      내용 &nbsp;<input 
             value={text}
-            onChange={addTextHandler}/>
+            onChange={addTextHandler}/></div>
+      
           
+    <div className='inputs-button'>  <button className="addButton" onClick={addTodoList}
+      >추가하기</button></div>
+     
 
-      <button onClick={addTodoList}
-      >추가하기</button>
-   
+     
+   </div>  
     
-
-      <div className='toDoLists-Css'>Working
+ <div><h2>Working..🔥</h2></div>
+      <div className='toDoLists-Css'>
+       
       {toDoLists.map(function (items){
 
 return <div key={toDoLists.id} className='toDoList-Css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
-      <button onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
-      <button onClick={()=>addDoneList(items.id)}>완료</button>
+      <button className="cancelButton" onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
+      <button className="restButton" onClick={()=>addDoneList(items.id)}>완료</button>
       </div>
 })}</div>
 
-
-      <div className='toDoLists-Css'>Done
+<div><h2>Done..🎉</h2></div>
+      <div className='toDoLists-Css'>
+        
       {doneLists.map(function (items){
 
-return <div key={doneLists.id} className='toDoList-Css'> 
-    <form onSubmit={addWorkingList}>
+return <form onSubmit={addWorkingList}>
+<div key={doneLists.id} className='toDoList-Css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
-      <button onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
-        <button type="submit">취소</button>
-      </form>
+      <button className="cancelButton" onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
+
+         <button className="restButton" type='submit'>취소</button>
+    
+       
     {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
       </div>
+</form>
+
+
+
       })}
 
 
 
+</div> </Header></div>
+
 </div>
-    </Header>
+   
+
+
+
   );
 }
 
