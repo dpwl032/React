@@ -1,3 +1,8 @@
+.toDoLists-Css{
+display: flex;
+}
+
+
 .toDoList-Css{
   border : 3px solid green;
   width : 250px;

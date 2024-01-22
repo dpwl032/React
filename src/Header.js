@@ -11,7 +11,7 @@ function Header(props) {
             <span >My todo List</span>
             <span style={{
                 // textAlign:"right"
-            }}>React</span>
+            }}>/React</span>
             </header>
 {props.children}
 </>

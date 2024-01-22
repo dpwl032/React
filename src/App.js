@@ -8,9 +8,9 @@ function App() {
   //Working
   //배열 state화
   const [toDoLists, setTodoLists] = useState(
-    [{id:1, title:'리액트 공부하기', text:'리액트 기초를 공부해봅시다', isDone:false},
-    {id:2, title:'리액트 공부하기.', text:'리액트 기초를 공부해봅시다', isDone:false},
-    {id:3, title:'리액트 공부하기', text:'리액트 기초를 공부해봅시다', isDone:false},]
+    [{id:1, title:'리액트 공부하기1', text:'리액트 기초를 공부해봅시다', isDone:false},
+    {id:2, title:'리액트 공부하기2.', text:'리액트 기초를 공부해봅시다', isDone:false},
+    {id:3, title:'리액트 공부하기3', text:'리액트 기초를 공부해봅시다', isDone:false},]
   );
 
     //input값 state화
@@ -65,13 +65,24 @@ const removeDoneList = (id) =>{
 
 
   //완료
-  const isDoneToDoList = () =>{
+  const addDoneList = (id) =>{
 
+    const title = document.getElementsByTagName("h2")[id].textContent;
+    const text = document.getElementsByTagName("p")[id].textContent;
+    const changeList = {
+      id:doneLists.length+1,
+      title : title,
+      text : text,
+    }
+    console.log("test",title);
+    setDoneLists([...doneLists,changeList]);
   }
 
   //취소
-  const isWorkingToDoList = () =>{
-
+  const addWorkingList = (event) =>{
+   // submit 이벤트가 일어나면 새로고침방지. submit 관련 태그 고유의 동작 금지
+    event.preventDefault();
+   console.log(event.target.title);
   }
 
   return (
@@ -91,28 +102,32 @@ const removeDoneList = (id) =>{
    
     
 
-      <div >Working
+      <div className='toDoLists-Css'>Working
       {toDoLists.map(function (items){
 
 return <div key={toDoLists.id} className='toDoList-Css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
       <button onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
-      <button onClick={isDoneToDoList}>완료</button>
+      <button onClick={()=>addDoneList(items.id)}>완료</button>
       </div>
 })}</div>
 
 
-      <div>Done
+      <div className='toDoLists-Css'>Done
       {doneLists.map(function (items){
 
 return <div key={doneLists.id} className='toDoList-Css'> 
+    <form onSubmit={addWorkingList}>
       <h2>{items.title}</h2>
       <p>{items.text}</p>
       <button onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
-      <button onClick={isWorkingToDoList}>취소</button>
+        <button type="submit">취소</button>
+      </form>
+    {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
       </div>
       })}
+
 
 
 </div>
