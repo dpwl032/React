@@ -69,33 +69,42 @@ const [working, setWorking] = useState(toDoLists);
 const [done, setDone] = useState(doneLists);
 
 
-  //완료
+  //완료버튼시 --> don
   const addDoneList = (id) =>{
-    // const completeList = toDoLists.filter((items)=>items.id !==id);
-    // setTodoLists(completeList);
-
     const changeDone = toDoLists.filter((items)=>items.id ===id);
-
   //  const a = {...changeDone};
   //  const b = {...a};
   //  a.id=1515;
   //  console.log(a);
+    // const a = ...changeDone;
+    const changeDoneList = {...changeDone[0]}
+    changeDoneList.id = doneLists.length+1;
+    changeDoneList.isDone = true;
 
+    console.log("w",changeDoneList);
 
-    setDoneLists([...doneLists,...changeDone]);
+    setDoneLists([...doneLists,changeDoneList]);
     
-
+    //원래 리스트에서 삭제
     const changeTodoList = toDoLists.filter((items)=>items.id !==id);
     setTodoLists(changeTodoList);
    
   }
 
-  //취소
+  //취소버튼시 ----> working
   const addWorkingList = (id) =>{
    // submit 이벤트가 일어나면 새로고침방지. submit 관련 태그 고유의 동작 금지
    const cancelDone = doneLists.filter((items)=>items.id ===id);
-   setTodoLists([...toDoLists, ...cancelDone ]);
+   const resultList = {...cancelDone[0]}
+   resultList.id = toDoLists.length+1;
+   resultList.isDone = true;
 
+
+
+
+   setTodoLists([...toDoLists, resultList]);
+   console.log("d",resultList);
+   
    const chandDoneList = doneLists.filter((items)=>items.id !==id);
     setDoneLists(chandDoneList);
 
