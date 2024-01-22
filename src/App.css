@@ -1,6 +1,4 @@
 .content-wrap{
-  max-width: 1200px;
-  min-width: 800px;
   display: flex;
   align-items: center; 
   justify-content: center;
@@ -33,7 +31,7 @@
 
 .input-contents{
   width: 50%;
-  margin-left: 20px;
+  margin-left: 0px;
   margin-top: 20px;
 }
 

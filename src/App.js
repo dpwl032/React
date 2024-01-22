@@ -76,14 +76,17 @@ const [done, setDone] = useState(doneLists);
 
     const changeDone = toDoLists.filter((items)=>items.id ===id);
 
+  //  const a = {...changeDone};
+  //  const b = {...a};
+  //  a.id=1515;
+  //  console.log(a);
 
 
-    setDoneLists([...doneLists,...changeDone ]);
+    setDoneLists([...doneLists,...changeDone]);
+    
 
-    console.log(doneLists);
-
-    const changeWorking = toDoLists.filter((items)=>items.id !==id);
-    setTodoLists(changeWorking);
+    const changeTodoList = toDoLists.filter((items)=>items.id !==id);
+    setTodoLists(changeTodoList);
    
   }
 
@@ -93,8 +96,8 @@ const [done, setDone] = useState(doneLists);
    const cancelDone = doneLists.filter((items)=>items.id ===id);
    setTodoLists([...toDoLists, ...cancelDone ]);
 
-   const aaa = doneLists.filter((items)=>items.id !==id);
-    setDoneLists(aaa);
+   const chandDoneList = doneLists.filter((items)=>items.id !==id);
+    setDoneLists(chandDoneList);
 
   }
 
