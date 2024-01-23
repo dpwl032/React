@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './component/Header';
 import { useState } from 'react';
+import Buttons from './component/Buttons';
+import DoneButtons from './component/DoneButtons';
 
 function App() {
   //Working
@@ -103,11 +105,11 @@ function App() {
 
         <div className='input-wrap'> 
           <div className='input-contents'>
-            &nbsp; 제목  &nbsp;<input
+            &nbsp; 제목&nbsp;<input
                 value={title}
                 onChange= {addTitleHandler}
               />
-              &nbsp; 내용 &nbsp;<input 
+              &nbsp; 내용&nbsp;<input 
                     value={text}
                     onChange={addTextHandler}/></div>
                     
@@ -147,8 +149,8 @@ const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 <div key={toDoLists.id} className='toDoList-Css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
-      <button className="cancelButton" onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
-      <button className="restButton" onClick={()=>addDoneList(items.id)}>완료</button>
+      <Buttons onClick={()=>removeToDoList(items.id)}>삭제하기</Buttons> 
+      <DoneButtons onClick={()=>addDoneList(items.id)}>완료</DoneButtons>
       </div>
   );
 };
@@ -161,9 +163,8 @@ const DoneList = ({doneLists,items,addWorkingList,removeDoneList}) =>{
 <div key={doneLists.id} className='toDoList-Css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
-      <button className="cancelButton" onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
-
-         <button className="restButton" onClick={()=>addWorkingList(items.id)}>취소</button>
+      <Buttons onClick={()=>removeDoneList(items.id)}>삭제하기</Buttons> 
+      <DoneButtons onClick={()=>addWorkingList(items.id)}>취소</DoneButtons>
       </div>
   );
 };
