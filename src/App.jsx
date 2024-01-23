@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './Header';
+import Header from './component/Header';
 import { useState } from 'react';
 
 function App() {
@@ -138,12 +138,7 @@ const [done, setDone] = useState(doneLists);
        
       {toDoLists.map(function (items){
 
-return <div key={toDoLists.id} className='toDoList-Css'> 
-      <h2>{items.title}</h2>
-      <p>{items.text}</p>
-      <button className="cancelButton" onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
-      <button className="restButton" onClick={()=>addDoneList(items.id)}>완료</button>
-      </div>
+return <DoLists toDoLists={toDoLists} items={items} addDoneList={addDoneList} removeToDoList={removeToDoList} />
 })}</div>
 
 <div><h2>Done..🎉</h2></div>
@@ -176,9 +171,19 @@ return <div key={doneLists.id} className='toDoList-Css'>
 
 
   );
-}
+};
 
 
+const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 
+  return (
+<div key={toDoLists.id} className='toDoList-Css'> 
+      <h2>{items.title}</h2>
+      <p>{items.text}</p>
+      <button className="cancelButton" onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
+      <button className="restButton" onClick={()=>addDoneList(items.id)}>완료</button>
+      </div>
+  );
+};
 
 export default App;
