@@ -117,11 +117,11 @@ const [done, setDone] = useState(doneLists);
 
      <div className='input-wrap'> 
      <div className='input-contents'>
-제목  &nbsp;<input
+     &nbsp; 제목  &nbsp;<input
         value={title}
         onChange= {addTitleHandler}
       />
-      내용 &nbsp;<input 
+      &nbsp; 내용 &nbsp;<input 
             value={text}
             onChange={addTextHandler}/></div>
       
