@@ -146,16 +146,9 @@ return <DoLists toDoLists={toDoLists} items={items} addDoneList={addDoneList} re
         
       {doneLists.map(function (items){
 
-return <div key={doneLists.id} className='toDoList-Css'> 
-      <h2>{items.title}</h2>
-      <p>{items.text}</p>
-      <button className="cancelButton" onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
 
-         <button className="restButton" onClick={()=>addWorkingList(items.id)}>취소</button>
-    
-       
-    {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
-      </div>
+ {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
+return <DoneList doneLists={doneLists} items={items} addWorkingList={addWorkingList} removeDoneList={removeDoneList}/>
 
 
 
@@ -173,7 +166,7 @@ return <div key={doneLists.id} className='toDoList-Css'>
   );
 };
 
-
+//todo 컴포넌트 분리
 const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 
   return (
@@ -182,6 +175,21 @@ const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
       <p>{items.text}</p>
       <button className="cancelButton" onClick={()=>removeToDoList(items.id)}>삭제하기</button> 
       <button className="restButton" onClick={()=>addDoneList(items.id)}>완료</button>
+      </div>
+  );
+};
+
+
+//done 컴포넌트 분리
+
+const DoneList = ({doneLists,items,addWorkingList,removeDoneList}) =>{
+  return (
+<div key={doneLists.id} className='toDoList-Css'> 
+      <h2>{items.title}</h2>
+      <p>{items.text}</p>
+      <button className="cancelButton" onClick={()=>removeDoneList(items.id)}>삭제하기</button> 
+
+         <button className="restButton" onClick={()=>addWorkingList(items.id)}>취소</button>
       </div>
   );
 };
