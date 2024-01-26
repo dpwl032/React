@@ -1,3 +1,14 @@
+body{
+  all : unset;
+}
+
+.todo-header{
+  border : 1px solid rgba(77, 72, 72, 0.332);
+  border-radius : 1px;
+  display: flex;
+  justify-content: space-between;
+
+}
 .content-wrap{
 width: 100%;
 height: 100%;
@@ -48,11 +59,11 @@ height: 100%;
   margin-top: 14px;
 }
 
-.toDoLists-Css{
+.todo-lists-css{
 display: flex;
 }
 
-.toDoList-Css{
+.todo-list-css{
   border : 3px solid hsla(190, 64%, 39%, 0.821);
   width : 250px;
   height : 170px;
@@ -61,7 +72,7 @@ display: flex;
   text-Align : center;
 }
 
-.addButton{
+.add-button{
   border-radius: 10px;
   height: 35px;
   width: 100px;
@@ -71,7 +82,7 @@ display: flex;
   color: white;
 }
 
-.cancelButton{
+.cancel-button{
   border-radius: 10px;
   height: 35px;
   width: 100px;
@@ -80,7 +91,7 @@ display: flex;
   margin: 5px;
 }
 
-.restButton{
+.rest-button{
   border-radius: 10px;
   height: 35px;
   width: 100px;

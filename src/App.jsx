@@ -114,13 +114,13 @@ function App() {
                     onChange={addTextHandler}/></div>
                     
             <div className='inputs-button'>  
-              <button className="addButton" onClick={addTodoList}
+              <button className="add-button" onClick={addTodoList}
                 >추가하기</button>
             </div>
         </div>  
     
           <div><h2>Working..🔥</h2></div>
-              <div className='toDoLists-Css'>
+              <div className='todo-lists-css'>
                 {toDoLists.map(function (items){
           return <DoLists toDoLists={toDoLists} 
                           items={items} 
@@ -128,7 +128,7 @@ function App() {
                           removeToDoList={removeToDoList} />})}</div>
 
           <div><h2>Done..🎉</h2></div>
-                <div className='toDoLists-Css'>
+                <div className='todo-lists-css'>
                 {doneLists.map(function (items){
           {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
           return <DoneList doneLists={doneLists} 
@@ -146,7 +146,7 @@ function App() {
 const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 
   return (
-<div key={toDoLists.id} className='toDoList-Css'> 
+<div key={toDoLists.id} className='todo-list-css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
       <Buttons onClick={()=>removeToDoList(items.id)}>삭제하기</Buttons> 
@@ -160,7 +160,7 @@ const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 
 const DoneList = ({doneLists,items,addWorkingList,removeDoneList}) =>{
   return (
-<div key={doneLists.id} className='toDoList-Css'> 
+<div key={doneLists.id} className='todo-list-css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
       <Buttons onClick={()=>removeDoneList(items.id)}>삭제하기</Buttons> 

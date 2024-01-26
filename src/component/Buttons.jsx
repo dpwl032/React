@@ -3,7 +3,7 @@ import React from 'react'
 function Buttons(props) {
 
 
-    return <button className="cancelButton" onClick={props.onClick}>{props.children}</button>;
+    return <button className="cancel-button" onClick={props.onClick}>{props.children}</button>;
     
 }
 
