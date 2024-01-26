@@ -76,7 +76,6 @@ function App() {
       changeDoneList.id = doneLists.length+1;
       changeDoneList.isDone = true;
 
-      console.log("w",changeDoneList);
 
       setDoneLists([...doneLists,changeDoneList]);
       
@@ -94,7 +93,6 @@ function App() {
       resultList.isDone = true;
 
       setTodoLists([...toDoLists, resultList]);
-      console.log("d",resultList);
       
       const chandDoneList = doneLists.filter((items)=>items.id !==id);
         setDoneLists(chandDoneList);
@@ -103,7 +101,7 @@ function App() {
   return (<div className='content-wrap'> 
       <div className='contents'><Header>
 
-        <div className='input-wrap'> 
+        <nav className='input-wrap'> 
           <div className='input-contents'>
             &nbsp; 제목&nbsp;<input
                 value={title}
@@ -117,17 +115,24 @@ function App() {
               <button className="add-button" onClick={addTodoList}
                 >추가하기</button>
             </div>
-        </div>  
+
+
+
+
+            
+        </nav>  
     
-          <div><h2>Working..🔥</h2></div>
+          <section><h2>Working..🔥</h2></section>
               <div className='todo-lists-css'>
+
                 {toDoLists.map(function (items){
-          return <DoLists toDoLists={toDoLists} 
+          return <DoLists 
+                          toDoLists={toDoLists} 
                           items={items} 
                           addDoneList={addDoneList} 
                           removeToDoList={removeToDoList} />})}</div>
 
-          <div><h2>Done..🎉</h2></div>
+          <section><h2>Done..🎉</h2></section>
                 <div className='todo-lists-css'>
                 {doneLists.map(function (items){
           {/* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */}
@@ -137,6 +142,7 @@ function App() {
                           removeDoneList={removeDoneList}/>})}</div> 
               </Header>
             </div>
+            
           </div>
 
         );
