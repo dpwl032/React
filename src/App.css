@@ -30,9 +30,7 @@ height: 100%;
   max-width: 1200px; */
   height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
 }
 
 .input-contents >input{
@@ -55,8 +53,8 @@ align-items: center;
 
 .todo-list-css{
   border : 3px solid hsla(190, 64%, 39%, 0.821);
-  width : 250px;
-  height : 170px;
+  width : 300px;
+  height : 200px;
   border-radius : 10px;
   margin : 20px;
   text-Align : center;

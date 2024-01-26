@@ -9,23 +9,49 @@ function App() {
   //Working
   //배열 state화
     const [toDoLists, setTodoLists] = useState(
-      [{id:1, title:'리액트 공부하기1', text:'리액트 기초를 공부해봅시다', isDone:false},
-      {id:2, title:'리액트 공부하기2', text:'리액트 기초를 공부해봅시다', isDone:false},
-      {id:3, title:'리액트 공부하기3', text:'리액트 기초를 공부해봅시다', isDone:false},]
+      [{id:1, title:'리액트 입문', text:'입문 강의 복습하기', deadline: '2024-01-26',isDone:false},
+      {id:2, title:'리액트 숙련', text:'숙련 강의 듣기',deadline: '2024-01-26', isDone:false},
+      {id:3, title:'JS 복습', text:'JS 강의 복습하기',deadline: '2024-01-26', isDone:false},]
     );
 
     //input값 state화
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
+    const [deadline, setDeadline] = useState('');
 
     //제목 입력 시 input값과 동기화
-    const addTitleHandler =(event) =>{
-      setTitle(event.target.value)
+    // const addTitleHandler =(event) =>{
+    //   setTitle(event.target.value)
+    // }
+    // //내용 입력 시 input값과 동기화
+    // const addTextHandler =(event) =>{
+    //   setText(event.target.value)
+    // }
+
+
+    const addTodoListHandler = (e)=>{
+      e.preventDefault();
+
+      const title = e.target.title.value;
+      const text = e.target.text.value;
+      const deadline = e.target.deadline.value;
+      
+      const newTodoList = {
+        id: toDoLists.length+1,
+        title,
+        text,
+        deadline,
+        idDone : false,
+      }
+
+      console.log(newTodoList);
+      setTodoLists([...toDoLists,newTodoList]);
     }
-    //내용 입력 시 input값과 동기화
-    const addTextHandler =(event) =>{
-      setText(event.target.value)
-    }
+
+
+
+
+
 
     //버튼 클릭 시 내용 추가
     const addTodoList = (e) =>{
@@ -33,11 +59,13 @@ function App() {
         id: toDoLists.length+1,
         title,
         text,
+        deadline,
         idDone : false,
       }
       setTodoLists([...toDoLists,newTodoList]);
       setTitle("");
       setText("");
+      setDeadline("");
     }
 
     //삭제하기(working)
@@ -49,8 +77,8 @@ function App() {
 ////////////////////////////////////////////////////
     //done state화
     const [doneLists, setDoneLists] = useState(
-      [{id:1, title:'리액트 공부합시다.4', text:'리액트 노션보기!!',isDone:true},
-      {id:2, title:'리액트 공부합시다.5', text:'리액트 노션보기!!',isDone:true},
+      [{id:1, title:'JS 강의 듣기', text:'JS 강의 완강하기',deadline: '2024-01-26',isDone:true},
+      {id:2, title:'개인 과제 제출', text:'리액트 개인과제',deadline: '2024-01-26',isDone:true},
       ]
     );
 
@@ -102,24 +130,17 @@ function App() {
       <div className='contents'><Header>
 
         <nav className='input-wrap'> 
-          <div className='input-contents'>
-            &nbsp; 제목&nbsp;<input
-                value={title}
-                onChange= {addTitleHandler}
-              />
-              &nbsp; 내용&nbsp;<input 
-                    value={text}
-                    onChange={addTextHandler}/></div>
-                    
-            <div className='inputs-button'>  
-              <button className="add-button" onClick={addTodoList}
+        <form className='input-contents' onSubmit={addTodoListHandler}>
+            &nbsp; 제목&nbsp;<input type="text" name="title"/>
+              &nbsp; 내용&nbsp;<input type="text" name="text"/>    
+              <input type="date" name="deadline"  min="2024-01-01" max="2025-01-01"/>
+              <button className="add-button" type="submit"
                 >추가하기</button>
-            </div>
+            </form>
 
 
 
 
-            
         </nav>  
     
           <section><h2>Working..🔥</h2></section>
@@ -151,10 +172,18 @@ function App() {
 //todo 컴포넌트 분리
 const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 
+  const today = new Date(items.deadline);
+  const dateString = today.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+  });
+
   return (
 <div key={toDoLists.id} className='todo-list-css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
+      <p>{dateString}</p>
       <Buttons onClick={()=>removeToDoList(items.id)}>삭제하기</Buttons> 
       <DoneButtons onClick={()=>addDoneList(items.id)}>완료</DoneButtons>
       </div>
@@ -165,10 +194,20 @@ const DoLists = ({toDoLists,items,addDoneList,removeToDoList}) =>{
 //done 컴포넌트 분리
 
 const DoneList = ({doneLists,items,addWorkingList,removeDoneList}) =>{
+
+  const today = new Date(items.deadline);
+  const dateString = today.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+  });
+
+
   return (
 <div key={doneLists.id} className='todo-list-css'> 
       <h2>{items.title}</h2>
       <p>{items.text}</p>
+      <p>{dateString}</p>
       <Buttons onClick={()=>removeDoneList(items.id)}>삭제하기</Buttons> 
       <DoneButtons onClick={()=>addWorkingList(items.id)}>취소</DoneButtons>
       </div>
