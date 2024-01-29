@@ -40,8 +40,17 @@ height: 100%;
   border: none;
   /* margin-left: 10px; */
 }
+.add-button{
+  border-radius: 10px;
+  height: 35px;
+  width: 100px;
+  border:  3px solid hsla(190, 64%, 39%, 0.821);
+  background-color: hsla(190, 64%, 39%, 0.821);
+  margin: 5px;
+  color: white;
+}
 
-/*todo card*/
+/* todo card
 .todo-lists-css{
 display: flex;
 flex-wrap: wrap;
@@ -61,7 +70,7 @@ align-items: center;
 }
 
 /*버튼*/
-.add-button{
+/* .add-button{
   border-radius: 10px;
   height: 35px;
   width: 100px;
@@ -70,23 +79,61 @@ align-items: center;
   margin: 5px;
   color: white;
 }
+.button-css{
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  
+  width: 250px;
 
+}
+*/
 .cancel-button{
-  border-radius: 10px;
-  height: 35px;
-  width: 100px;
-  background-color: transparent;
-  border: 3px solid rgb(238, 19, 19);
-  margin: 5px;
+  background-color: 3px solid rgb(238, 19, 19);
 }
-
+*/
 .rest-button{
+  background-color: 3px solid rgb(94, 173, 34);
+} 
+
+.wrap-working{
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  
+}
+.todo-lists-css {
+  border: 1px solid rgb(168, 168, 168);
   border-radius: 10px;
-  height: 35px;
-  width: 100px;
-  background-color: transparent;
-  border: 3px solid rgb(94, 173, 34);
-  margin: 5px;
+  box-shadow: 5px 5px 5px 5px gray;
+  width: 400px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.card-list {
+  width: 80%;
+  height: 200px;
+  /* text-align: center; */
+  gap: 50px;
 }
 
+.buttons{
 
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  
+}
+.buttons > button {
+  width: 140px;
+  border-radius: 30px;
+  border: transparent;
+}
