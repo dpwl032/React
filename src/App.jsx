@@ -7,6 +7,40 @@ import DoneButtons from "./component/DoneButtons";
 import TodoForm from "./component/TodoForm";
 import DoLists from "./component/DoLists";
 import DoneList from "./component/DoneList";
+import styled from "styled-components";
+import GlobalStyle from "./GlobalStyle";
+
+const StContenWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StMenu = styled.h2`
+  background-color: rgb(179, 226, 226);
+`;
+
+const InputWrap = styled.nav`
+  max-width: 1200px;
+  min-width: 800px;
+  background-color: rgba(96, 91, 91, 0.074);
+  border-radius: 10px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+`;
+
+const WrapWorking = styled.div`
+  /* height: 1200px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 1 rem;
+`;
 
 function App() {
   //todoList 배열선언 및 state
@@ -124,77 +158,80 @@ function App() {
   };
 
   return (
-    <div className="content-wrap">
-      <div className="contents">
-        <Header />
-        <nav className="input-wrap">
-          <TodoForm newTodoList={newTodoList} />
-        </nav>
+    <>
+      <GlobalStyle />
+      <StContenWrap>
+        <div className="contents">
+          <Header />
+          <InputWrap>
+            <TodoForm newTodoList={newTodoList} />
+          </InputWrap>
 
-        <section>
-          <h2 className="menu-css">Working..🔥</h2>
-          <select
-            onChange={(e) => doListSortHandler(e.target.value)}
-            DoLists={DoLists}
-          >
-            <option name="sortOrder" value="asc">
-              오름차순{" "}
-            </option>
-            <option name="sortOrder" value="desc">
-              {" "}
-              내림차순{" "}
-            </option>
-          </select>
-        </section>
-        <div className="wrap-working">
-          {toDoLists.map(function (items) {
-            return (
-              <DoLists
-                key={items.id}
-                toDoLists={toDoLists}
-                items={items}
-                addDoneList={addDoneList}
-                removeToDoList={removeToDoList}
-                doListSortHandler={doListSortHandler}
-              />
-            );
-          })}
-        </div>
+          <section>
+            <StMenu>Working..🔥</StMenu>
+            <select
+              onChange={(e) => doListSortHandler(e.target.value)}
+              DoLists={DoLists}
+            >
+              <option name="sortOrder" value="asc">
+                오름차순{" "}
+              </option>
+              <option name="sortOrder" value="desc">
+                {" "}
+                내림차순{" "}
+              </option>
+            </select>
+          </section>
+          <WrapWorking>
+            {toDoLists.map(function (items) {
+              return (
+                <DoLists
+                  key={items.id}
+                  toDoLists={toDoLists}
+                  items={items}
+                  addDoneList={addDoneList}
+                  removeToDoList={removeToDoList}
+                  doListSortHandler={doListSortHandler}
+                />
+              );
+            })}
+          </WrapWorking>
 
-        <section>
-          <h2 className="menu-css">Done..🎉</h2>
-          <select
-            onChange={(e) => doneListSortHandler(e.target.value)}
-            DoneList={DoneList}
-          >
-            <option name="sortOrder" value="asc" checked>
-              오름차순{" "}
-            </option>
-            <option name="sortOrder" value="desc">
-              {" "}
-              내림차순{" "}
-            </option>
-          </select>
-        </section>
-        <div className="wrap-working">
-          {doneLists.map(function (items) {
-            {
-              /* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */
-            }
-            return (
-              <DoneList
-                key={items.id}
-                doneLists={doneLists}
-                items={items}
-                addWorkingList={addWorkingList}
-                removeDoneList={removeDoneList}
-                doneListSortHandler={doneListSortHandler}
-              />
-            );
-          })}
+          <section>
+            <StMenu>Done..🎉</StMenu>
+            <select
+              onChange={(e) => doneListSortHandler(e.target.value)}
+              DoneList={DoneList}
+            >
+              <option name="sortOrder" value="asc" checked>
+                오름차순{" "}
+              </option>
+              <option name="sortOrder" value="desc">
+                {" "}
+                내림차순{" "}
+              </option>
+            </select>
+          </section>
+          <WrapWorking>
+            {doneLists.map(function (items) {
+              {
+                /* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */
+              }
+              return (
+                <DoneList
+                  key={items.id}
+                  doneLists={doneLists}
+                  items={items}
+                  addWorkingList={addWorkingList}
+                  removeDoneList={removeDoneList}
+                  doneListSortHandler={doneListSortHandler}
+                />
+              );
+            })}
+          </WrapWorking>
         </div>
-      </div>
-    </div>
+      </StContenWrap>
+    </>
   );
 }
 
