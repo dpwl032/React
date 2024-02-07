@@ -13,7 +13,6 @@ function DoneItem() {
 
   return (
     <div>
-      {todoId}
       {todoTitle}
       {todoText}
       {date}

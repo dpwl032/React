@@ -14,7 +14,6 @@ function TodoItem(props) {
 
   return (
     <div>
-      {todoId}
       {todoTitle}
       {todoText}
       {date}
