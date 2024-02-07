@@ -2,6 +2,8 @@ import React from "react";
 import Buttons from "./Buttons";
 import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import TodoItem from "../pages/TodoItem";
 
 const TodoLists = styled.div`
   border: 1px solid rgb(168, 168, 168);
@@ -43,18 +45,26 @@ const DoLists = ({
     day: "numeric",
   });
 
+  const { id, text, title } = items;
+
   return (
-    <TodoLists key={toDoLists.id}>
-      <CardList>
-        <h2>{items.title}</h2>
-        <p>{items.text}</p>
-        <StDate>{dateString}</StDate>
-        <ButtonCss>
-          <Buttons onClick={() => removeToDoList(items.id)}>Delete</Buttons>
-          <DoneButtons onClick={() => addDoneList(items.id)}>Done</DoneButtons>
-        </ButtonCss>
-      </CardList>
-    </TodoLists>
+    <>
+      <TodoLists key={toDoLists.id}>
+        <CardList>
+          <Link to={`/${id}`} state={{ items: { text, title, id } }}>
+            <h2>{title}</h2>{" "}
+          </Link>
+          <p>{text}</p>
+          <StDate>{dateString}</StDate>
+          <ButtonCss>
+            <Buttons onClick={() => removeToDoList(items.id)}>Delete</Buttons>
+            <DoneButtons onClick={() => addDoneList(items.id)}>
+              Done
+            </DoneButtons>
+          </ButtonCss>
+        </CardList>
+      </TodoLists>
+    </>
   );
 };
 

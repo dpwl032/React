@@ -2,6 +2,7 @@ import React from "react";
 import Buttons from "./Buttons";
 import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StDate = styled.p`
   color: #808080eb;
@@ -43,10 +44,13 @@ const DoneList = ({ doneLists, items, addWorkingList, removeDoneList }) => {
     day: "numeric",
   });
 
+  const { id, text, title } = items;
   return (
     <TodoLists key={doneLists.id}>
       <CardList>
-        <h2>{items.title}</h2>
+        <Link to={`/${id}`} state={{ items: { text, title, id } }}>
+          <h2>{title}</h2>{" "}
+        </Link>
         <DoneContent lineColor="yellow">{items.text}</DoneContent>
         <StDate>{dateString}</StDate>
         <ButtonCss>
