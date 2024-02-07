@@ -10,13 +10,14 @@ function TodoItem(props) {
   const todoId = state.items.id;
   const todoTitle = state.items.title;
   const todoText = state.items.text;
-  console.log(todoId);
+  const date = state.items.date;
 
   return (
     <div>
       {todoId}
       {todoTitle}
       {todoText}
+      {date}
     </div>
   );
 }

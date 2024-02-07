@@ -51,7 +51,10 @@ const DoLists = ({
     <>
       <TodoLists key={toDoLists.id}>
         <CardList>
-          <Link to={`/${id}`} state={{ items: { text, title, id } }}>
+          <Link
+            to={`/${id}`}
+            state={{ items: { text, title, id, date: dateString } }}
+          >
             <h2>{title}</h2>{" "}
           </Link>
           <p>{text}</p>

@@ -48,7 +48,10 @@ const DoneList = ({ doneLists, items, addWorkingList, removeDoneList }) => {
   return (
     <TodoLists key={doneLists.id}>
       <CardList>
-        <Link to={`/${id}`} state={{ items: { text, title, id } }}>
+        <Link
+          to={`/${id}`}
+          state={{ items: { text, title, id, date: dateString } }}
+        >
           <h2>{title}</h2>{" "}
         </Link>
         <DoneContent lineColor="yellow">{items.text}</DoneContent>
