@@ -1,25 +1,22 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
+const StHeader = styled.header`
+  border: 1px solid rgba(77, 72, 72, 0.332);
+  border-radius: 1px;
+  display: flex;
+  justify-content: space-between;
+`;
 function Header(props) {
-    return (
+  return (
     <>
-    <header style={
-        {
-            border : "1px solid rgba(77, 72, 72, 0.332)",
-            borderRadius : "1px",
-            height:"30px",
-        }}>
-                <div style={{ display:"flex",marginLeft : "20px",}}>
-                    <div style={{width : "50%",}}>
-                        My Todo List
-                    </div>
-                    <div style={{width : "50%",textAlign: "right",marginRight : "20px",}}>
-                        React
-                    </div>
-                </div>
-            </header>
-        {props.children}
+      <StHeader>
+        <h3>My Todo List</h3>
+        <h3>React</h3>
+      </StHeader>
+      {props.children}
     </>
-    )}
+  );
+}
 
-export default Header
+export default Header;
