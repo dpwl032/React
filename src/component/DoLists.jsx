@@ -31,6 +31,11 @@ const ButtonCss = styled.button`
 const StDate = styled.p`
   color: #808080eb;
 `;
+
+const StTitle = styled.h2`
+  text-decoration: none;
+`;
+
 const DoLists = ({
   toDoLists,
   items,

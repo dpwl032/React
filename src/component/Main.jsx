@@ -66,7 +66,6 @@ function Main() {
       isDone: false,
     },
   ]);
-
   //input값 state화 ---> form으로 변경
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -155,7 +154,7 @@ function Main() {
     });
     setDoneLists(newDoneList);
   };
-  console.log(doneLists);
+
   return (
     <>
       <GlobalStyle />

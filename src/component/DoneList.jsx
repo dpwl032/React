@@ -51,6 +51,7 @@ const DoneList = ({ doneLists, items, addWorkingList, removeDoneList }) => {
         <Link
           to={`/${id}`}
           state={{ items: { text, title, id, date: dateString } }}
+          style={{ textDecoration: "none", color: "black" }}
         >
           <h2>{title}</h2>{" "}
         </Link>

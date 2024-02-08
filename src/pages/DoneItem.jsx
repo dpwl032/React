@@ -13,8 +13,10 @@ function DoneItem() {
 
   return (
     <div>
-      {todoTitle}
-      {todoText}
+      제목 : {todoTitle}
+      <br />
+      내용 : {todoText}
+      <br />
       {date}
     </div>
   );
