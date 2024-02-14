@@ -4,6 +4,48 @@ import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import TodoItem from "../pages/TodoItem";
+import { useDispatch, useSelector } from "react-redux";
+
+const DoLists = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
+  const today = new Date(items.deadline);
+  const dateString = today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const toDoLists = useSelector((state) => {
+    return state.toDoLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
+  });
+
+  const { id, text, title } = items;
+
+  return (
+    <>
+      <TodoLists key={toDoLists.id}>
+        <CardList>
+          <Link
+            to={`/${id}`}
+            state={{ items: { text, title, id, date: dateString } }}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <h2>{title}</h2>{" "}
+          </Link>
+          <p>{text}</p>
+          <StDate>{dateString}</StDate>
+          <ButtonCss>
+            <Buttons onClick={() => removeToDoList(items.id)}>Delete</Buttons>
+            <DoneButtons onClick={() => addDoneList(items.id)}>
+              Done
+            </DoneButtons>
+          </ButtonCss>
+        </CardList>
+      </TodoLists>
+    </>
+  );
+};
+
+export default DoLists;
 
 const TodoLists = styled.div`
   border: 1px solid rgb(168, 168, 168);
@@ -35,45 +77,3 @@ const StDate = styled.p`
 const StTitle = styled.h2`
   text-decoration: none;
 `;
-
-const DoLists = ({
-  toDoLists,
-  items,
-  addDoneList,
-  removeToDoList,
-  ascEventHandler,
-}) => {
-  const today = new Date(items.deadline);
-  const dateString = today.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  const { id, text, title } = items;
-
-  return (
-    <>
-      <TodoLists key={toDoLists.id}>
-        <CardList>
-          <Link
-            to={`/${id}`}
-            state={{ items: { text, title, id, date: dateString } }}
-          >
-            <h2>{title}</h2>{" "}
-          </Link>
-          <p>{text}</p>
-          <StDate>{dateString}</StDate>
-          <ButtonCss>
-            <Buttons onClick={() => removeToDoList(items.id)}>Delete</Buttons>
-            <DoneButtons onClick={() => addDoneList(items.id)}>
-              Done
-            </DoneButtons>
-          </ButtonCss>
-        </CardList>
-      </TodoLists>
-    </>
-  );
-};
-
-export default DoLists;

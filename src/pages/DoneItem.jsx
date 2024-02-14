@@ -1,24 +1,32 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Main from "../component/Main";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function DoneItem() {
   const params = useParams();
-  const { state } = useLocation();
-  const todoId = state.items.id;
-  const todoTitle = state.items.title;
-  const todoText = state.items.text;
-  const date = state.items.date;
+  const doneLists = useSelector((state) => {
+    return state.doneLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
+  });
+
+  console.log("params", params);
+  console.log("doneLists", doneLists);
+
+  const findData = doneLists.doneLists.find(
+    (e) => e.id === parseInt(params.doneId)
+  );
 
   return (
-    <div>
-      제목 : {todoTitle}
+    <>
+      <h1>상세페이지 입니다</h1>
+      {findData.id}
       <br />
-      내용 : {todoText}
+      {findData.title}
       <br />
-      {date}
-    </div>
+      {findData.text}
+      <br />
+      {findData.deadline}
+      <br />
+    </>
   );
 }
 
