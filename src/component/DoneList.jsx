@@ -32,9 +32,7 @@ const DoneList = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
         <StDate>{dateString}</StDate>
         <ButtonCss>
           <Buttons onClick={() => removeToDoList(items.id)}>Delete</Buttons>
-          <DoneButtons onClick={() => addDoneList(items.id)}>
-            Cancel
-          </DoneButtons>
+          <CancelBtn onClick={() => addDoneList(items.id)}>Cancel</CancelBtn>
         </ButtonCss>
       </CardList>
     </TodoLists>
@@ -73,4 +71,8 @@ const ButtonCss = styled.button`
   height: 35px;
   display: flex;
   justify-content: space-between;
+`;
+
+const CancelBtn = styled.button`
+  background-color: rgb(81, 212, 71);
 `;

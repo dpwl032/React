@@ -1,8 +1,11 @@
+//action value
 const ADD_TODOLIST = "letters/ADD_TODOLIST";
 const DELETE_TODOLIST = "letters/DELETE_TODOLIST";
-const EDIT_TODOLIST = "letters/EDIT_TODOLIST";
 const CHANGE_TODOLIST = "letters/CHANGE_TODOLIST";
 const SORT_TODOLIST = "letters/SORT_TODOLIST";
+const SORT_DONELIST = "letters/SORT_DONELIST";
+
+//action creator
 export const addToDoList = (payload) => {
   return { type: ADD_TODOLIST, payload };
 };
@@ -17,6 +20,11 @@ export const changeToDoList = (payload) => {
 export const sortToDoList = (payload) => {
   return { type: SORT_TODOLIST, payload };
 };
+
+export const sortDoneList = (payload) => {
+  return { type: SORT_DONELIST, payload };
+};
+
 const initialState = {
   toDoLists: [
     {
@@ -84,7 +92,26 @@ const toDoLists = (state = initialState, action) => {
       return { ...state, toDoLists: changeList };
 
     case SORT_TODOLIST:
-      return state;
+      const toSort = action.payload;
+
+      const sortTodoList = [...state.toDoLists].sort((a, b) => {
+        if (toSort === "asc") {
+          return new Date(a.deadline) - new Date(b.deadline);
+        }
+        return new Date(b.deadline) - new Date(a.deadline);
+      });
+      return { ...state, toDoLists: sortTodoList };
+
+    case SORT_DONELIST:
+      const doneSort = action.payload;
+
+      const sortDoneList = [...state.toDoLists].sort((a, b) => {
+        if (doneSort === "asc") {
+          return new Date(a.deadline) - new Date(b.deadline);
+        }
+        return new Date(b.deadline) - new Date(a.deadline);
+      });
+      return { ...state, toDoLists: sortDoneList };
 
     default:
       return state;

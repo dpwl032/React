@@ -12,6 +12,7 @@ import {
   deleteToDoList,
   changeToDoList,
   sortToDoList,
+  sortDoneList,
 } from "../redux/modules/Todos";
 
 function Main() {
@@ -45,15 +46,12 @@ function Main() {
 
   //todoList 정렬
 
-  const doListSortHandler = (e) => {
-    const newTodoList = [...toDoLists].sort((a, b) => {
-      if (e === "asc") {
-        return new Date(a.deadline) - new Date(b.deadline);
-      }
-      return new Date(b.deadline) - new Date(a.deadline);
-    });
-    // setTodoLists(newTodoList);
-    dispatch(sortToDoList(newTodoList));
+  const doListSortHandler = (sort) => {
+    dispatch(sortToDoList(sort));
+  };
+
+  const doneListSortHandler = (sort) => {
+    dispatch(sortDoneList(sort));
   };
 
   return (
@@ -117,7 +115,7 @@ function Main() {
                   items={items}
                   addDoneList={addDoneList}
                   removeToDoList={removeToDoList}
-                  doListSortHandler={doListSortHandler}
+                  doneListSortHandler={doneListSortHandler}
                 />
               ) : null;
             })}
