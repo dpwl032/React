@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-const DoLists = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
+const DoLists = ({ items, addDoneList, removeToDoList }) => {
   const today = new Date(items.deadline);
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",

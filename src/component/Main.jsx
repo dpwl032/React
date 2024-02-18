@@ -16,10 +16,11 @@ import {
 } from "../redux/modules/Todos";
 
 function Main() {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
+  //useState
+  // const [title, setTitle] = useState("");
+  // const [text, setText] = useState("");
+  // const [deadline, setDeadline] = useState("");
+  // const [sortOrder, setSortOrder] = useState("asc");
 
   //redux
   const dispatch = useDispatch();
@@ -45,11 +46,10 @@ function Main() {
   };
 
   //todoList 정렬
-
   const doListSortHandler = (sort) => {
     dispatch(sortToDoList(sort));
   };
-
+  //doneList 정렬
   const doneListSortHandler = (sort) => {
     dispatch(sortDoneList(sort));
   };
@@ -87,7 +87,6 @@ function Main() {
                   items={items}
                   addDoneList={addDoneList}
                   removeToDoList={removeToDoList}
-                  doListSortHandler={doListSortHandler}
                 />
               ) : null;
             })}
@@ -115,7 +114,6 @@ function Main() {
                   items={items}
                   addDoneList={addDoneList}
                   removeToDoList={removeToDoList}
-                  doneListSortHandler={doneListSortHandler}
                 />
               ) : null;
             })}

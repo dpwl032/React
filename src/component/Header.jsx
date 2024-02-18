@@ -1,12 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const StHeader = styled.header`
-  border: 1px solid rgba(77, 72, 72, 0.332);
-  border-radius: 1px;
-  display: flex;
-  justify-content: space-between;
-`;
 function Header(props) {
   return (
     <>
@@ -20,3 +14,10 @@ function Header(props) {
 }
 
 export default Header;
+
+const StHeader = styled.header`
+  border: 1px solid rgba(77, 72, 72, 0.332);
+  border-radius: 1px;
+  display: flex;
+  justify-content: space-between;
+`;

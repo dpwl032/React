@@ -1,11 +1,10 @@
 import React from "react";
 import Buttons from "./Buttons";
-import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const DoneList = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
+const DoneList = ({ items, addDoneList, removeToDoList }) => {
   const today = new Date(items.deadline);
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
