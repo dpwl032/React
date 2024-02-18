@@ -26,7 +26,7 @@ const TodoLists = styled.div`
 `;
 
 const DoneContent = styled.p`
-  text-decoration: line-through ${(props) => props.lineColor};
+  text-decoration: line-through ${(props) => props.linecolor};
 `;
 
 const ButtonCss = styled.button`
@@ -55,7 +55,7 @@ const DoneList = ({ doneLists, items, addWorkingList, removeDoneList }) => {
         >
           <h2>{title}</h2>{" "}
         </Link>
-        <DoneContent lineColor="yellow">{items.text}</DoneContent>
+        <DoneContent linecolor="yellow">{items.text}</DoneContent>
         <StDate>{dateString}</StDate>
         <ButtonCss>
           <Buttons onClick={() => removeDoneList(items.id)}>Delete</Buttons>

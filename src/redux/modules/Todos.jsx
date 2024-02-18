@@ -11,10 +11,6 @@ export const deleteToDoList = (payload) => {
   return { type: DELETE_TODOLIST, payload };
 };
 
-export const editToDoList = (payload) => {
-  return { type: EDIT_TODOLIST, payload };
-};
-
 export const changeToDoList = (payload) => {
   return { type: CHANGE_TODOLIST, payload };
 };
@@ -56,9 +52,27 @@ const toDoLists = (state = initialState, action) => {
         toDoLists: [newTodoList, ...state.toDoLists],
       };
     case DELETE_TODOLIST:
-      const id = action.payload;
-      const deleteTodoList = state.toDoLists.filter((items) => items.id !== id);
+      const deleteId = action.payload;
+      const deleteTodoList = state.toDoLists.filter(
+        (items) => items.id !== deleteId
+      );
       return { ...state, toDoLists: deleteTodoList };
+
+    case CHANGE_TODOLIST:
+      const changeId = action.payload;
+      const changeList = state.toDoLists.map((item) => {
+        if (item.id == changeId) {
+          return { ...item, isDone: !item.isDone };
+        } else {
+          return item;
+        }
+      });
+      console.log(" changeList", changeList);
+      return changeList;
+
+    case SORT_TODOLIST:
+      return state;
+
     default:
       return state;
   }
