@@ -5,9 +5,8 @@ import { useSelector } from "react-redux";
 function DetailTodo(props) {
   const params = useParams();
   const toDoLists = useSelector((state) => {
-    return state.toDoLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
+    return state.toDoLists;
   });
-
   const findData = toDoLists.toDoLists.find(
     (e) => String(e.id) === params.todoId
   );

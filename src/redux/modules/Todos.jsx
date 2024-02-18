@@ -40,6 +40,20 @@ const initialState = {
       deadline: "2024-01-23",
       isDone: false,
     },
+    {
+      id: 4,
+      title: "JS 강의 듣기",
+      text: "JS 강의 완강하기",
+      deadline: "2024-01-18",
+      isDone: true,
+    },
+    {
+      id: 5,
+      title: "개인 과제 제출",
+      text: "리액트 개인과제",
+      deadline: "2024-01-12",
+      isDone: true,
+    },
   ],
 };
 
@@ -67,8 +81,7 @@ const toDoLists = (state = initialState, action) => {
           return item;
         }
       });
-      console.log(" changeList", changeList);
-      return changeList;
+      return { ...state, toDoLists: changeList };
 
     case SORT_TODOLIST:
       return state;

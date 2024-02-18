@@ -3,6 +3,45 @@ import Buttons from "./Buttons";
 import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+const DoneList = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
+  const today = new Date(items.deadline);
+  const dateString = today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const toDoLists = useSelector((state) => {
+    return state.toDoLists;
+  });
+
+  const { id, text, title } = items;
+  return (
+    <TodoLists key={toDoLists.id}>
+      <CardList>
+        <Link
+          to={`/${id}`}
+          state={{ items: { text, title, id, date: dateString } }}
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <h2>{title}</h2>{" "}
+        </Link>
+        <p>{text}</p>
+        <StDate>{dateString}</StDate>
+        <ButtonCss>
+          <Buttons onClick={() => removeToDoList(items.id)}>Delete</Buttons>
+          <DoneButtons onClick={() => addDoneList(items.id)}>
+            Cancel
+          </DoneButtons>
+        </ButtonCss>
+      </CardList>
+    </TodoLists>
+  );
+};
+//
+export default DoneList;
 
 const StDate = styled.p`
   color: #808080eb;
@@ -35,37 +74,3 @@ const ButtonCss = styled.button`
   display: flex;
   justify-content: space-between;
 `;
-
-const DoneList = ({ doneLists, items, addWorkingList, removeDoneList }) => {
-  const today = new Date(items.deadline);
-  const dateString = today.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  const { id, text, title } = items;
-  return (
-    <TodoLists key={doneLists.id}>
-      <CardList>
-        <Link
-          to={`/${id}`}
-          state={{ items: { text, title, id, date: dateString } }}
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          <h2>{title}</h2>{" "}
-        </Link>
-        <DoneContent linecolor="yellow">{items.text}</DoneContent>
-        <StDate>{dateString}</StDate>
-        <ButtonCss>
-          <Buttons onClick={() => removeDoneList(items.id)}>Delete</Buttons>
-          <DoneButtons onClick={() => addWorkingList(items.id)}>
-            Cancel
-          </DoneButtons>
-        </ButtonCss>
-      </CardList>
-    </TodoLists>
-  );
-};
-//
-export default DoneList;

@@ -15,83 +15,35 @@ import {
 } from "../redux/modules/Todos";
 
 function Main() {
-  const dispatch = useDispatch();
-
-  const toDoLists = useSelector((state) => {
-    return state.toDoLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
-  });
-
-  const doneLists = useSelector((state) => {
-    return state.doneLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
-  });
-
-  // console.log(doneLists);
-
-  //input값 state화 ---> form으로 변경
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [deadline, setDeadline] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
 
+  //redux
+  const dispatch = useDispatch();
+
+  //toDoLists 가져오기
+  const toDoLists = useSelector((state) => {
+    return state.toDoLists;
+  });
+
+  //새 todo 추가하기
   const newTodoList = (newTodoList) => {
     dispatch(addToDoList(newTodoList));
   };
 
-  //삭제하기(working)
+  //List item 삭제하기
   const removeToDoList = (id) => {
     dispatch(deleteToDoList(id));
   };
 
-  ////////////////////////////////////////////////////
-  //doneList배열 및 state
-  // const [doneLists, setDoneLists] = useState([
-  //   {
-  //     id: 4,
-  //     title: "JS 강의 듣기",
-  //     text: "JS 강의 완강하기",
-  //     deadline: "2024-01-18",
-  //     isDone: true,
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "개인 과제 제출",
-  //     text: "리액트 개인과제",
-  //     deadline: "2024-01-12",
-  //     isDone: true,
-  //   },
-  // ]);
-
-  //삭제하기(done)
-  const removeDoneList = (id) => {
-    const newDoneList = doneLists.filter((items) => items.id !== id);
-    // setDoneLists(newDoneList);
-    // dispatch(deleteDoneList(newDoneList));
-  };
-
-  //완료버튼시 working->Done
+  //todo ↔ done
   const addDoneList = (id) => {
-    const changeDone = toDoLists.filter((items) => items.id === id);
-    const changeDoneList = { ...changeDone[0] };
-    changeDoneList.isDone = true;
-    // setDoneLists([...doneLists, changeDoneList]);
-    dispatch(changeDoneList([...doneLists, changeDoneList]));
-
-    //원래 리스트에서 삭제
-    const changeTodoList = toDoLists.filter((items) => items.id !== id);
-
-    //setTodoLists(changeTodoList);
-    dispatch(deleteToDoList(changeTodoList));
-  };
-
-  //취소버튼시 Done-> working
-  const addWorkingList = (id) => {
-    // submit 이벤트가 일어나면 새로고침방지. submit 관련 태그 고유의 동작 금지
     dispatch(changeToDoList(id));
-
-    const chandDoneList = doneLists.filter((items) => items.id !== id);
-    // setDoneLists(chandDoneList);
-    dispatch(deleteToDoList(chandDoneList));
   };
+
+  //todoList 정렬
 
   const doListSortHandler = (e) => {
     const newTodoList = [...toDoLists].sort((a, b) => {
@@ -102,18 +54,6 @@ function Main() {
     });
     // setTodoLists(newTodoList);
     dispatch(sortToDoList(newTodoList));
-  };
-
-  //doneList 정렬
-  const doneListSortHandler = (e) => {
-    const newDoneList = [...doneLists].sort((a, b) => {
-      if (e === "asc") {
-        return new Date(a.deadline) - new Date(b.deadline);
-      }
-      return new Date(b.deadline) - new Date(a.deadline);
-    });
-
-    // dispatch(sortDoneList(newDoneList));
   };
 
   return (
@@ -143,7 +83,7 @@ function Main() {
           </section>
           <WrapWorking>
             {toDoLists.toDoLists.map((items) => {
-              return (
+              return !items.isDone ? (
                 <DoLists
                   key={items.id}
                   items={items}
@@ -151,14 +91,14 @@ function Main() {
                   removeToDoList={removeToDoList}
                   doListSortHandler={doListSortHandler}
                 />
-              );
+              ) : null;
             })}
           </WrapWorking>
           <section>
             <StMenu>Done..🎉</StMenu>
             <select
-              onChange={(e) => doneListSortHandler(e.target.value)}
-              DoneList={DoneList}
+              onChange={(e) => doListSortHandler(e.target.value)}
+              DoLists={DoLists}
             >
               <option name="sortOrder" value="asc" checked>
                 오름차순{" "}
@@ -170,20 +110,16 @@ function Main() {
             </select>
           </section>
           <WrapWorking>
-            {doneLists.doneLists.map(function (items) {
-              {
-                /* onSubmit은 form 안에 있을 때만 사용 가능, onClick은 상관없음 */
-              }
-              return (
+            {toDoLists.toDoLists.map((items) => {
+              return items.isDone ? (
                 <DoneList
                   key={items.id}
-                  doneLists={doneLists}
                   items={items}
-                  addWorkingList={addWorkingList}
-                  removeDoneList={removeDoneList}
-                  doneListSortHandler={doneListSortHandler}
+                  addDoneList={addDoneList}
+                  removeToDoList={removeToDoList}
+                  doListSortHandler={doListSortHandler}
                 />
-              );
+              ) : null;
             })}
           </WrapWorking>
         </div>
