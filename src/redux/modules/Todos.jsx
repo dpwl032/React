@@ -51,7 +51,10 @@ const toDoLists = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODOLIST:
       const newTodoList = action.payload;
-      return (toDoLists) => [newTodoList, ...toDoLists];
+      return {
+        ...state,
+        toDoLists: [newTodoList, ...state.toDoLists],
+      };
     default:
       return state;
   }

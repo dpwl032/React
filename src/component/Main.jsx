@@ -6,8 +6,6 @@ import DoLists from "../component/DoLists";
 import DoneList from "../component/DoneList";
 import styled from "styled-components";
 import GlobalStyle from "../GlobalStyle";
-import { Link } from "react-router-dom";
-import TodoItem from "../pages/TodoItem";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToDoList,
@@ -33,7 +31,7 @@ function Main() {
     return state.doneLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
   });
 
-  console.log(doneLists);
+  // console.log(doneLists);
 
   //input값 state화 ---> form으로 변경
   const [title, setTitle] = useState("");

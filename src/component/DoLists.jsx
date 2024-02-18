@@ -3,7 +3,7 @@ import Buttons from "./Buttons";
 import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import TodoItem from "../pages/TodoItem";
+import TodoItem from "../pages/DetailTodo";
 import { useDispatch, useSelector } from "react-redux";
 
 const DoLists = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
