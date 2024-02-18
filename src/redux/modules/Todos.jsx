@@ -51,7 +51,14 @@ const toDoLists = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODOLIST:
       const newTodoList = action.payload;
-      return (toDoLists) => [newTodoList, ...toDoLists];
+      return {
+        ...state,
+        toDoLists: [newTodoList, ...state.toDoLists],
+      };
+    case DELETE_TODOLIST:
+      const id = action.payload;
+      const deleteTodoList = state.toDoLists.filter((items) => items.id !== id);
+      return { ...state, toDoLists: deleteTodoList };
     default:
       return state;
   }
