@@ -3,8 +3,8 @@ import Buttons from "./Buttons";
 import DoneButtons from "./DoneButtons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import TodoItem from "../pages/DetailTodo";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 
 const DoLists = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
   const today = new Date(items.deadline);
@@ -15,7 +15,7 @@ const DoLists = ({ items, addDoneList, removeToDoList, ascEventHandler }) => {
   });
 
   const toDoLists = useSelector((state) => {
-    return state.toDoLists; //state도 obj형태기 때문에 .으로 counter로 접근할 수 있다.
+    return state.toDoLists;
   });
 
   const { id, text, title } = items;

@@ -1,23 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const AddBtn = styled.button`
-  border-radius: 10px;
-  height: 35px;
-  width: 100px;
-  border: 3px solid hsla(190, 64%, 39%, 0.821);
-  background-color: hsla(190, 64%, 39%, 0.821);
-  margin: 5px;
-  color: white;
-`;
-
-const StFormInput = styled.input`
-  border-radius: 10px;
-  height: 30px;
-  width: 128px;
-  border: none;
-  /* margin-left: 10px; */
-`;
 function TodoForm({ newTodoList }) {
   const addTodoListHandler = (e) => {
     e.preventDefault();
@@ -61,3 +44,21 @@ function TodoForm({ newTodoList }) {
 }
 
 export default TodoForm;
+
+const AddBtn = styled.button`
+  border-radius: 10px;
+  height: 35px;
+  width: 100px;
+  border: 3px solid hsla(190, 64%, 39%, 0.821);
+  background-color: hsla(190, 64%, 39%, 0.821);
+  margin: 5px;
+  color: white;
+`;
+
+const StFormInput = styled.input`
+  border-radius: 10px;
+  height: 30px;
+  width: 128px;
+  border: none;
+  /* margin-left: 10px; */
+`;
