@@ -44,8 +44,7 @@ function Main() {
 
   //삭제하기(working)
   const removeToDoList = (id) => {
-    const newTodoList = toDoLists.filter((items) => items.id !== id);
-    dispatch(deleteToDoList(newTodoList));
+    dispatch(deleteToDoList(id));
   };
 
   ////////////////////////////////////////////////////

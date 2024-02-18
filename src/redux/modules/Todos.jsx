@@ -55,6 +55,10 @@ const toDoLists = (state = initialState, action) => {
         ...state,
         toDoLists: [newTodoList, ...state.toDoLists],
       };
+    case DELETE_TODOLIST:
+      const id = action.payload;
+      const deleteTodoList = state.toDoLists.filter((items) => items.id !== id);
+      return { ...state, toDoLists: deleteTodoList };
     default:
       return state;
   }
